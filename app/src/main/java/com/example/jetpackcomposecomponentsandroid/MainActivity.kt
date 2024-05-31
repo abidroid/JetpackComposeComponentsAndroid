@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,7 +45,8 @@ class MainActivity : ComponentActivity() {
 //                    )
                     //MyLayouts(name = "Android", modifier = Modifier.padding(innerPadding))
 
-                    MyAlignments(name = "Android", modifier = Modifier.padding(innerPadding))
+                    //MyAlignments(name = "Android", modifier = Modifier.padding(innerPadding))
+                    MyButtons(name = "My Buttons", modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -141,12 +145,43 @@ fun MyAlignments(name: String, modifier: Modifier) {
     }
 }
 
+@Composable
+fun MyButtons(name: String, modifier: Modifier = Modifier) {
+
+    var txt = remember {
+        mutableStateOf("Hello World !!!")
+    }
+
+    Column(
+        modifier = Modifier
+            .background(color = Color.White)
+            .fillMaxSize()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text(text = txt.value)
+        Spacer(modifier = Modifier.size(10.dp))
+        Button(onClick = {
+            txt.value = "Pakistan Zindabad"
+        }) {
+            Text(text = "Submit")
+
+        }
+
+
+
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     JetpackComposeComponentsAndroidTheme {
         //Greeting("Android")
         //MyLayouts(name = "Android")
-        MyAlignments(name = "Android", modifier = Modifier)
+        //MyAlignments(name = "Android", modifier = Modifier)
+        MyButtons(name = "My Buttons", modifier = Modifier)
     }
 }
