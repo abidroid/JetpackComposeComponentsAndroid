@@ -16,8 +16,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -152,9 +154,13 @@ fun MyButtons(name: String, modifier: Modifier = Modifier) {
         mutableStateOf("Hello World !!!")
     }
 
+    var bgColor = remember {
+        mutableStateOf(Color.White)
+    }
+
     Column(
         modifier = Modifier
-            .background(color = Color.White)
+            .background(color = bgColor.value)
             .fillMaxSize()
             .padding(10.dp),
         verticalArrangement = Arrangement.Center,
@@ -162,16 +168,42 @@ fun MyButtons(name: String, modifier: Modifier = Modifier) {
     ) {
 
         Text(text = txt.value)
+
         Spacer(modifier = Modifier.size(10.dp))
+
         Button(onClick = {
             txt.value = "Pakistan Zindabad"
         }) {
             Text(text = "Submit")
 
         }
+        Spacer(modifier = Modifier.size(10.dp))
 
+        OutlinedButton(onClick = {
+            bgColor.value = Color.Red
+        }) {
+            Text(text = "Red")
+        }
+        Spacer(modifier = Modifier.size(10.dp))
 
+        OutlinedButton(onClick = {
+            bgColor.value = Color.Green
+        }) {
+            Text(text = "Green")
+        }
 
+        Spacer(modifier = Modifier.size(10.dp))
+        OutlinedButton(onClick = {
+            bgColor.value = Color.Blue
+        }) {
+            Text(text = "Blue")
+        }
+
+        TextButton(onClick = {
+            bgColor.value = Color.White
+        }) {
+            Text(text = "Not Registered Yet? Sign up")
+        }
     }
 }
 
