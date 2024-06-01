@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,6 +21,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,7 +50,9 @@ class MainActivity : ComponentActivity() {
                     //MyLayouts(name = "Android", modifier = Modifier.padding(innerPadding))
 
                     //MyAlignments(name = "Android", modifier = Modifier.padding(innerPadding))
-                    MyButtons(name = "My Buttons", modifier = Modifier.padding(innerPadding))
+                    //MyButtons(name = "My Buttons", modifier = Modifier.padding(innerPadding))
+                    MyTextFields(name = "My TextFields", modifier = Modifier.padding(innerPadding))
+
                 }
             }
         }
@@ -207,6 +211,32 @@ fun MyButtons(name: String, modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun MyTextFields(name: String, modifier: Modifier = Modifier) {
+
+    var tf = remember {
+        mutableStateOf("")
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+            .padding(10.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "TextFields")
+        Spacer(modifier = Modifier.size(10.dp))
+        TextField(value = tf.value, onValueChange = {
+            tf.value = it
+        },
+            label = { Text(text = "Enter your name", color = Color.White) },
+            modifier = Modifier.fillMaxWidth()
+
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -214,6 +244,7 @@ fun GreetingPreview() {
         //Greeting("Android")
         //MyLayouts(name = "Android")
         //MyAlignments(name = "Android", modifier = Modifier)
-        MyButtons(name = "My Buttons", modifier = Modifier)
+        //MyButtons(name = "My Buttons", modifier = Modifier)
+        MyTextFields(name = "My TextFields", modifier = Modifier)
     }
 }
