@@ -59,7 +59,8 @@ class MainActivity : ComponentActivity() {
                     //MyButtons(name = "My Buttons", modifier = Modifier.padding(innerPadding))
                     //MyTextFields(name = "My TextFields", modifier = Modifier.padding(innerPadding))
                     //Dmc(name = "Dmc", modifier = Modifier.padding(innerPadding))
-                    MyImages(name = "My Images", modifier = Modifier.padding(innerPadding))
+                    //MyImages(name = "My Images", modifier = Modifier.padding(innerPadding))
+                    MyCheckboxes(name = "My Checkboxes", modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -403,6 +404,18 @@ fun MyImages(name: String, modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun MyCheckboxes(name: String, modifier: Modifier = Modifier) {
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+            .padding(10.dp)
+    ){
+        Text(text = "Hobbies")
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -414,7 +427,7 @@ fun GreetingPreview() {
         //MyButtons(name = "My Buttons", modifier = Modifier)
         //MyTextFields(name = "My TextFields", modifier = Modifier)
         //Dmc(name = "Dmc")
-        MyImages(name = "My Images", modifier = Modifier)
-
+        //MyImages(name = "My Images", modifier = Modifier)
+        MyCheckboxes(name = "My Checkboxes", modifier = Modifier)
     }
 }
