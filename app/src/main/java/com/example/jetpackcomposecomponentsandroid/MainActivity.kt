@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -55,7 +57,8 @@ class MainActivity : ComponentActivity() {
                     //MyAlignments(name = "Android", modifier = Modifier.padding(innerPadding))
                     //MyButtons(name = "My Buttons", modifier = Modifier.padding(innerPadding))
                     //MyTextFields(name = "My TextFields", modifier = Modifier.padding(innerPadding))
-                    Dmc(name = "Dmc", modifier = Modifier.padding(innerPadding))
+                    //Dmc(name = "Dmc", modifier = Modifier.padding(innerPadding))
+                    MyImages(name = "My Images", modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -336,25 +339,25 @@ fun Dmc(name: String, modifier: Modifier = Modifier) {
                 val per: Double = (obtMarks / 500.0) * 100
                 percentage.value = per.toString()
 
-                if( per >= 80){
+                if (per >= 80) {
                     grade.value = "A"
                 }
 
-                if( per >= 70 && per < 80){
+                if (per >= 70 && per < 80) {
                     grade.value = "B"
                 }
 
-                if( per >= 60 && per < 70){
+                if (per >= 60 && per < 70) {
                     grade.value = "C"
 
                 }
 
-                if( per >= 40 && per < 60) {
+                if (per >= 40 && per < 60) {
                     grade.value = "D"
 
                 }
 
-                if(per < 40){
+                if (per < 40) {
                     grade.value = "Fail"
                 }
             }, modifier = Modifier.weight(1f)) {
@@ -372,6 +375,24 @@ fun Dmc(name: String, modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun MyImages(name: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+            .padding(10.dp)
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.abid),
+            contentDescription = "Abid",
+            modifier = Modifier.size(200.dp)
+        )
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -381,6 +402,8 @@ fun GreetingPreview() {
         //MyAlignments(name = "Android", modifier = Modifier)
         //MyButtons(name = "My Buttons", modifier = Modifier)
         //MyTextFields(name = "My TextFields", modifier = Modifier)
-        Dmc(name = "Dmc")
+        //Dmc(name = "Dmc")
+        MyImages(name = "My Images", modifier = Modifier)
+
     }
 }
