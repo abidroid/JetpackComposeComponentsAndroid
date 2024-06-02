@@ -1,6 +1,7 @@
 package com.example.jetpackcomposecomponentsandroid
 
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +22,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -34,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Checkbox
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -407,13 +410,77 @@ fun MyImages(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun MyCheckboxes(name: String, modifier: Modifier = Modifier) {
 
+    val cricket = remember { mutableStateOf(false) }
+    val hockey = remember { mutableStateOf(false) }
+    val football = remember { mutableStateOf(false) }
+    val basketball = remember { mutableStateOf(false) }
+    val badminton = remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
             .padding(10.dp)
-    ){
-        Text(text = "Hobbies")
+    ) {
+        Spacer(modifier = Modifier.size(10.dp))
+        Text(
+            text = "Hobbies",
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.size(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(checked = cricket.value, onCheckedChange = {
+                cricket.value = it
+            })
+            Text(text = "Cricket")
+        }
+        Spacer(modifier = Modifier.size(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(checked = hockey.value, onCheckedChange = {
+                hockey.value = it
+            })
+            Text(text = "Hockey")
+        }
+
+        Spacer(modifier = Modifier.size(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(checked = football.value, onCheckedChange = {
+                football.value = it
+            })
+            Text(text = "Football")
+        }
+
+        Spacer(modifier = Modifier.size(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(checked = basketball.value, onCheckedChange = {
+                basketball.value = it
+            })
+            Text(text = "Basketball")
+        }
+
+        Spacer(modifier = Modifier.size(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(checked = badminton.value, onCheckedChange = {
+                badminton.value = it
+            })
+            Text(text = "Football")
+        }
     }
 }
 
