@@ -32,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -388,6 +389,16 @@ fun MyImages(name: String, modifier: Modifier = Modifier) {
             painter = painterResource(id = R.drawable.abid),
             contentDescription = "Abid",
             modifier = Modifier.size(200.dp)
+        )
+
+        Spacer(modifier = Modifier.size(10.dp))
+
+        Image(
+            painter = painterResource(id = R.drawable.indopak),
+            contentDescription = "Pakistan India",
+            modifier = Modifier.size(200.dp),
+            contentScale = ContentScale.Fit,
+            alignment = Alignment.Center
         )
     }
 }
