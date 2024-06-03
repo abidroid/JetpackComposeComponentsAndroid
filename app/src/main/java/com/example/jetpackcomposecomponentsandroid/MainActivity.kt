@@ -27,6 +27,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -67,7 +68,8 @@ class MainActivity : ComponentActivity() {
                     //Dmc(name = "Dmc", modifier = Modifier.padding(innerPadding))
                     //MyImages(name = "My Images", modifier = Modifier.padding(innerPadding))
                     //MyCheckboxes(name = "My Checkboxes", modifier = Modifier.padding(innerPadding))
-                    MyRadioButtons(name = "My RadioButtons", modifier = Modifier.padding(innerPadding))
+                    //MyRadioButtons(name = "My RadioButtons", modifier = Modifier.padding(innerPadding))
+                    MySwitch(name = "My Switch", modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -493,7 +495,6 @@ fun MyCheckboxes(name: String, modifier: Modifier = Modifier) {
 fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
 
 
-
     val radioOptions = listOf("Red", "Green", "Blue", "Orange")
     val colorsList = listOf(Color.Red, Color.Green, Color.Blue, Color.Yellow)
     val selectedIndex = remember { mutableIntStateOf(0) }
@@ -505,7 +506,7 @@ fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(color = bgColor.value)
             .padding(10.dp)
-    ){
+    ) {
 
         Spacer(modifier = Modifier.size(70.dp))
         radioOptions.forEachIndexed { index, text ->
@@ -517,8 +518,7 @@ fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
                     .clickable { // make the entire Row clickable
                         selectedIndex.value = index
                         bgColor.value = colorsList[index]
-                    }
-                ,
+                    },
                 verticalAlignment = Alignment.CenterVertically) {
                 RadioButton(
                     selected = selectedIndex.value == index,
@@ -531,7 +531,26 @@ fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
             }
         }
 
+    }
+}
 
+
+@Composable
+fun MySwitch(name: String, modifier: Modifier = Modifier) {
+    val switchState = remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+            .padding(10.dp)
+    ){
+        Spacer(modifier = Modifier.padding(30.dp))
+        Text(text = "Switch")
+        Spacer(modifier = Modifier.size(10.dp))
+        Switch(checked = switchState.value, onCheckedChange = {
+            switchState.value = it
+        })
     }
 }
 @Preview(showBackground = true)
@@ -546,6 +565,7 @@ fun GreetingPreview() {
         //Dmc(name = "Dmc")
         //MyImages(name = "My Images", modifier = Modifier)
         //MyCheckboxes(name = "My Checkboxes", modifier = Modifier)
-        MyRadioButtons(name = "My RadioButtons", modifier = Modifier)
+        //MyRadioButtons(name = "My RadioButtons", modifier = Modifier)
+        MySwitch(name = "My Switch", modifier = Modifier)
     }
 }
