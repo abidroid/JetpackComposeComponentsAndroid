@@ -24,11 +24,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -63,7 +65,8 @@ class MainActivity : ComponentActivity() {
                     //MyTextFields(name = "My TextFields", modifier = Modifier.padding(innerPadding))
                     //Dmc(name = "Dmc", modifier = Modifier.padding(innerPadding))
                     //MyImages(name = "My Images", modifier = Modifier.padding(innerPadding))
-                    MyCheckboxes(name = "My Checkboxes", modifier = Modifier.padding(innerPadding))
+                    //MyCheckboxes(name = "My Checkboxes", modifier = Modifier.padding(innerPadding))
+                    MyRadioButtons(name = "My RadioButtons", modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -484,6 +487,46 @@ fun MyCheckboxes(name: String, modifier: Modifier = Modifier) {
     }
 }
 
+
+@Composable
+fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
+
+    val bgColor = remember {
+        mutableStateOf(Color.White)
+    }
+
+    val radioOptions = listOf("Red", "Green", "Blue", "Orange")
+    val selectedIndex = remember { mutableIntStateOf(0) }
+    val selectedOption = radioOptions[selectedIndex.value]
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = bgColor.value)
+            .padding(10.dp)
+    ){
+
+        radioOptions.forEachIndexed { index, text ->
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = selectedIndex.value == index,
+                    onClick = {
+                        selectedIndex.value = index
+
+                    }
+                )
+                Text(text)
+            }
+        }
+
+
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -495,6 +538,7 @@ fun GreetingPreview() {
         //MyTextFields(name = "My TextFields", modifier = Modifier)
         //Dmc(name = "Dmc")
         //MyImages(name = "My Images", modifier = Modifier)
-        MyCheckboxes(name = "My Checkboxes", modifier = Modifier)
+        //MyCheckboxes(name = "My Checkboxes", modifier = Modifier)
+        MyRadioButtons(name = "My RadioButtons", modifier = Modifier)
     }
 }
