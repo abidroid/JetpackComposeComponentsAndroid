@@ -24,6 +24,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
@@ -542,7 +543,7 @@ fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun MySwitch(name: String, modifier: Modifier = Modifier) {
     val switchState = remember { mutableStateOf(false) }
-
+    val iconToDisplay = remember { mutableStateOf(Icons.Outlined.FavoriteBorder) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -553,7 +554,7 @@ fun MySwitch(name: String, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.padding(30.dp))
         Text(text = "Switch")
         Icon(
-            imageVector = Icons.Outlined.Favorite, contentDescription = "Favorite",
+            imageVector =  iconToDisplay.value , contentDescription = "Favorite",
             modifier = Modifier.size(200.dp),
             tint = Color.Red
         )
@@ -561,6 +562,13 @@ fun MySwitch(name: String, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.size(10.dp))
         Switch(checked = switchState.value, onCheckedChange = {
             switchState.value = it
+
+            if( switchState.value){
+                iconToDisplay.value = Icons.Outlined.Favorite
+            }else{
+                iconToDisplay.value = Icons.Outlined.FavoriteBorder
+
+            }
         })
     }
 }
