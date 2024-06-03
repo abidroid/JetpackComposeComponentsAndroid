@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -491,14 +492,14 @@ fun MyCheckboxes(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
 
+
+
+    val radioOptions = listOf("Red", "Green", "Blue", "Orange")
+    val colorsList = listOf(Color.Red, Color.Green, Color.Blue, Color.Yellow)
+    val selectedIndex = remember { mutableIntStateOf(0) }
     val bgColor = remember {
         mutableStateOf(Color.White)
     }
-
-    val radioOptions = listOf("Red", "Green", "Blue", "Orange")
-    val selectedIndex = remember { mutableIntStateOf(0) }
-    val selectedOption = radioOptions[selectedIndex.value]
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -506,18 +507,24 @@ fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
             .padding(10.dp)
     ){
 
+        Spacer(modifier = Modifier.size(70.dp))
         radioOptions.forEachIndexed { index, text ->
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 4.dp),
+                    .padding(vertical = 4.dp)
+                    .clickable { // make the entire Row clickable
+                        selectedIndex.value = index
+                        bgColor.value = colorsList[index]
+                    }
+                ,
                 verticalAlignment = Alignment.CenterVertically) {
                 RadioButton(
                     selected = selectedIndex.value == index,
                     onClick = {
                         selectedIndex.value = index
-
+                        bgColor.value = colorsList[index]
                     }
                 )
                 Text(text)
