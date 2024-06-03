@@ -22,8 +22,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
@@ -519,7 +522,8 @@ fun MyRadioButtons(name: String, modifier: Modifier = Modifier) {
                         selectedIndex.value = index
                         bgColor.value = colorsList[index]
                     },
-                verticalAlignment = Alignment.CenterVertically) {
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 RadioButton(
                     selected = selectedIndex.value == index,
                     onClick = {
@@ -543,16 +547,24 @@ fun MySwitch(name: String, modifier: Modifier = Modifier) {
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
-            .padding(10.dp)
-    ){
+            .padding(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Spacer(modifier = Modifier.padding(30.dp))
         Text(text = "Switch")
+        Icon(
+            imageVector = Icons.Outlined.Favorite, contentDescription = "Favorite",
+            modifier = Modifier.size(200.dp),
+            tint = Color.Red
+        )
+
         Spacer(modifier = Modifier.size(10.dp))
         Switch(checked = switchState.value, onCheckedChange = {
             switchState.value = it
         })
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
