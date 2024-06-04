@@ -27,6 +27,7 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
@@ -576,6 +577,14 @@ fun MySwitch(name: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun MyDropdownMenu(name: String, modifier: Modifier = Modifier) {
+
+    val countries = listOf("Pakistan", "India", "China", "Japan", "USA")
+
+    val selectedCountry = remember { mutableStateOf(countries[0]) }
+
+    var expanded = remember { mutableStateOf(false) }
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -586,6 +595,10 @@ fun MyDropdownMenu(name: String, modifier: Modifier = Modifier) {
     ) {
 
         Text("Dropdown Button")
+        Row(){
+            Text(text = selectedCountry.value)
+        }
+        DropdownMenu(expanded = expanded.value, onDismissRequest = { /*TODO*/ }) {}
     }
 }
 
