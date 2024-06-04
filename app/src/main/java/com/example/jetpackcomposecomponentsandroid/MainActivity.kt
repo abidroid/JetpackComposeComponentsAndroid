@@ -73,7 +73,8 @@ class MainActivity : ComponentActivity() {
                     //MyImages(name = "My Images", modifier = Modifier.padding(innerPadding))
                     //MyCheckboxes(name = "My Checkboxes", modifier = Modifier.padding(innerPadding))
                     //MyRadioButtons(name = "My RadioButtons", modifier = Modifier.padding(innerPadding))
-                    MySwitch(name = "My Switch", modifier = Modifier.padding(innerPadding))
+                    //MySwitch(name = "My Switch", modifier = Modifier.padding(innerPadding))
+                    MyDropdownMenu(name = "My DropdownMenu", modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -554,7 +555,7 @@ fun MySwitch(name: String, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.padding(30.dp))
         Text(text = "Switch")
         Icon(
-            imageVector =  iconToDisplay.value , contentDescription = "Favorite",
+            imageVector = iconToDisplay.value, contentDescription = "Favorite",
             modifier = Modifier.size(200.dp),
             tint = Color.Red
         )
@@ -563,13 +564,28 @@ fun MySwitch(name: String, modifier: Modifier = Modifier) {
         Switch(checked = switchState.value, onCheckedChange = {
             switchState.value = it
 
-            if( switchState.value){
+            if (switchState.value) {
                 iconToDisplay.value = Icons.Outlined.Favorite
-            }else{
+            } else {
                 iconToDisplay.value = Icons.Outlined.FavoriteBorder
 
             }
         })
+    }
+}
+
+@Composable
+fun MyDropdownMenu(name: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp)
+            .background(color = Color.White),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text("Dropdown Button")
     }
 }
 
@@ -586,6 +602,8 @@ fun GreetingPreview() {
         //MyImages(name = "My Images", modifier = Modifier)
         //MyCheckboxes(name = "My Checkboxes", modifier = Modifier)
         //MyRadioButtons(name = "My RadioButtons", modifier = Modifier)
-        MySwitch(name = "My Switch", modifier = Modifier)
+        //MySwitch(name = "My Switch", modifier = Modifier)
+        MyDropdownMenu(name = "My DropdownMenu", modifier = Modifier)
+
     }
 }
