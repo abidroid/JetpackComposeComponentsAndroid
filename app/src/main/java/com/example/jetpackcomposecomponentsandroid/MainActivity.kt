@@ -28,6 +28,7 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
@@ -595,10 +596,28 @@ fun MyDropdownMenu(name: String, modifier: Modifier = Modifier) {
     ) {
 
         Text("Dropdown Button")
-        Row(){
-            Text(text = selectedCountry.value)
+        Spacer(modifier = Modifier.size(30.dp))
+
+        Box {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable { expanded.value = true }
+            ) {
+                Text(text = selectedCountry.value)
+                Image(painter = painterResource(id = R.drawable.drop_down_icon), contentDescription = "")
+            }
+            DropdownMenu(expanded = expanded.value, onDismissRequest = {
+                expanded.value = false
+            }) {
+                countries.forEach { country ->
+                    DropdownMenuItem(text = { Text(text = country) }, onClick = {
+                        selectedCountry.value = country
+                        expanded.value = false
+                    })
+                }
+            }
         }
-        DropdownMenu(expanded = expanded.value, onDismissRequest = { /*TODO*/ }) {}
     }
 }
 
